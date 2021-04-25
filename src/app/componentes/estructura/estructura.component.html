@@ -2,5 +2,82 @@
     <div class="jumbotron">
       <h2>Estructura</h2>
       <hr>
+
+      <h4><u>*ngIf</u></h4>
+      <br>
+
+      <button class="btn btn-success mb-5" (click)="mostrar = !mostrar">
+        {{ mostrar? 'Ocultar': 'Mostrar' }}
+      </button>
+      <p *ngIf="mostrar;else oculto" class="alert alert-info">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga eaque ea quisquam dolores. Laboriosam voluptas fuga impedit nihil dolor nam!    
+      </p>
+      <ng-template #oculto>
+        <div *ngIf="!mostrar" class="alert alert-warning">
+          Elemento oculto
+        </div>
+      </ng-template>     
+      
+      <br>
+      <hr>
+
+      <h4><u>*ngFor</u></h4>
+      <br>
+
+      <h5>Array de Strings</h5>
+      <ul>
+        <li *ngFor="let p of personas; index as i">
+          {{ i }} - {{ p }}
+        </li>
+      </ul>
+      <br>
+
+      <h5>Array de Objetos</h5>
+      <ul>
+        <li *ngFor="let a of alumnos; index as i">
+          {{ i + 1 }}  {{ a.nombre + ' ' + a.apellido }}
+        </li>
+      </ul>
+
+      
+
+      <ng-template #ningun>
+        <div class="alert alert-danger">
+          No hay alumnos.
+        </div>
+      </ng-template>
+      <div *ngIf="alumnos.length; else ningun">
+        <div class="table-responsive">
+          <table class="table">
+            <tr class="bg-success text-white">
+              <th>Indice</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Edad</th>
+              <th>Curso</th>
+              <th>Foto</th>
+            </tr>
+    
+            <tr *ngFor="let a of alumnos; index as i" class="bg-info text-white">
+              <td>{{ i + 1 }}</td>
+              <td>{{ a.nombre }}</td>
+              <td>{{ a.apellido }}</td>
+              <td>{{ a.edad }}</td>
+              <td>{{ a.curso? 'Si':'No' }}</td>
+              <td><img [src]="a.foto" width="50" alt="foto de {{a.nombre}}"></td>
+            </tr>
+          </table>
+        </div>
+
+        <div *ngFor="let a of alumnos; index as i" class="media alert alert-info">
+          <img [src]="a.foto" width="150" alt="">
+          <div class="media-body ml-3">
+            <h5><u>Alumno {{ i + 1 }}</u></h5>
+            <br>
+            <p>Nombre: <b>{{a.nombre + ' ' + a.apellido }}</b></p>
+          </div>
+        </div>
+      </div>
+      
     </div>
 </div>
