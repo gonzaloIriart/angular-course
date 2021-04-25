@@ -39,8 +39,18 @@
         </li>
       </ul>
 
-      
+      <div class="form-group w-50">
+        <input class="form-control" type="text" [(ngModel)]="alumno.nombre" placeholder="nombre" name="" id="">
+        <input class="form-control" type="text" [(ngModel)]="alumno.apellido" placeholder="apellido" name="" id="">
+        <input class="form-control" type="text" [(ngModel)]="alumno.edad" placeholder="edad" name="" id="">
+        Curso? <input type="checkbox" [(ngModel)]="alumno.curso" placeholder="edad" name="" id="">
+        <input class="form-control" type="text" [(ngModel)]="alumno.foto" placeholder="ingrese url" name="" id="">
+      </div>
 
+      
+      <button (click)="agregarAlumno()" class="btn btn-warning my-3">
+        Agregar alumno
+      </button>
       <ng-template #ningun>
         <div class="alert alert-danger">
           No hay alumnos.
@@ -75,6 +85,9 @@
             <h5><u>Alumno {{ i + 1 }}</u></h5>
             <br>
             <p>Nombre: <b>{{a.nombre + ' ' + a.apellido }}</b></p>
+            <button (click)="eliminarAlumno(i)" class="btn btn-warning my-3">
+              Deletear
+            </button>
           </div>
         </div>
       </div>

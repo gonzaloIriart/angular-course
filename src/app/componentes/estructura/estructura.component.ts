@@ -27,4 +27,20 @@ export class EstructuraComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  eliminarAlumno(index){
+    this.alumnos.splice(index,1);
+  }
+
+  alumno:any = {
+    nombre: '',
+    apellido: '',
+    edad: '',
+    curso: '',
+    foto: '',
+  }
+
+  agregarAlumno() {
+    this.alumnos.push(this.alumno)
+  }
+
 }
