@@ -2,5 +2,223 @@
     <div class="jumbotron">
       <h2>Formularios</h2>
       <hr>
+
+      <h4><u>Template Driven</u></h4>
+      <br>
+
+      <form #loginForm="ngForm" autocomplete="off" (ngSubmit)="enviarTD(loginForm)">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input 
+            #nombreControl="ngModel"
+            required
+            type="text" 
+            class="form-control"
+            id="nombre"
+            placeholder="ingrese nombre"
+            [(ngModel)]="formu.nombre"
+            minlength="3"
+            name="nombre"
+          >
+          <div *ngIf="nombreControl.invalid && nombreControl.dirty" class="alert alert-danger mt-1">
+            <div *ngIf="nombreControl.errors.required">Campo requerido</div>
+            <div *ngIf="nombreControl.errors.minlength">Este campo debe poseer al menos 3 caracteres</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="apellido">Apellido</label>
+          <input 
+            #apellidoControl="ngModel"
+            required
+            type="text" 
+            class="form-control"
+            id="apellido"
+            placeholder="ingrese apellido"
+            [(ngModel)]="formu.apellido"
+            name="apellido"
+          >
+          <div *ngIf="apellidoControl.invalid && apellidoControl.dirty" class="alert alert-danger mt-1">
+            <div *ngIf="apellidoControl.errors.required">Campo requerido</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="edad">Edad</label>
+          <input 
+            #edadControl="ngModel"
+            required
+            type="text" 
+            class="form-control"
+            id="edad"
+            placeholder="ingrese edad"
+            [(ngModel)]="formu.edad"
+            name="edad"
+          >
+          <div *ngIf="edadControl.invalid && edadControl.dirty" class="alert alert-danger mt-1">
+            <div *ngIf="edadControl.errors.required">Campo requerido</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            #emailControl="ngModel"
+            required
+            email
+            type="text" 
+            class="form-control"
+            id="email"
+            placeholder="ingrese email"
+            [(ngModel)]="formu.email"
+            minlength="3"
+            name="email"
+          >
+          <div *ngIf="emailControl.invalid && emailControl.dirty" class="alert alert-danger mt-1">
+            <div *ngIf="emailControl.errors.required">Campo requerido</div>
+            <div *ngIf="emailControl.errors.email">El email no es valido</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            #passwordControl="ngModel"
+            required
+            type="password" 
+            class="form-control"
+            id="password"
+            placeholder="ingrese password"
+            [(ngModel)]="formu.password"
+            minlength="3"
+            name="password"
+          >
+          <div *ngIf="passwordControl.invalid && passwordControl.dirty" class="alert alert-danger mt-1">
+            <div *ngIf="passwordControl.errors.required">Campo requerido</div>
+            <div *ngIf="passwordControl.errors.minlength">Este campo debe poseer al menos 3 caracteres</div>
+          </div>
+        </div>
+
+        <button class="btn btn-success my-3" [disabled]="loginForm.invalid">
+          Submit
+        </button>
+      </form>
+      <hr>
+
+      <h4><u>Reactive Form</u></h4>
+      <br>
+
+      <form [formGroup]="f" autocomplete="off">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input 
+            type="text" 
+            id="nombre-rf"
+            class="form-control"
+            placeholder="ingrese nombre"
+            formControlName="nombre"
+          >
+          <div></div>
+          <div *ngIf="f.controls.nombre.errors && f.controls.nombre.dirty" class="alert alert-danger mt-1">
+            <div *ngIf="f.controls.nombre.errors.required">Campo requerido</div>
+            <div *ngIf="f.controls.nombre.errors.minlength">Este campo debe poseer al menos {{ f.controls.nombre.errors.minlength }} caracteres</div>
+            <div *ngIf="f.controls.nombre.errors.maxlength">Este campo debe poseer como maximo {{ f.controls.nombre.errors.maxlength }} caracteres</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="apellido">apellido</label>
+          <input 
+            type="text" 
+            id="apellido-rf"
+            class="form-control"
+            placeholder="ingrese apellido"
+            formControlName="apellido"
+          >
+          <div></div>
+          <!-- <div *ngIf="nombreControl.invalid && nombreControl.dirty" class="alert alert-danger mt-1">
+            <div *ngIf="nombreControl.errors.required">Campo requerido</div>
+            <div *ngIf="nombreControl.errors.minlength">Este campo debe poseer al menos 3 caracteres</div>
+          </div> -->
+        </div>
+
+        <div class="form-group">
+          <label for="edad">edad</label>
+          <input 
+            type="text" 
+            id="edad-rf"
+            class="form-control"
+            placeholder="ingrese edad"
+            formControlName="edad"
+          >
+          <div></div>
+          <!-- <div *ngIf="nombreControl.invalid && nombreControl.dirty" class="alert alert-danger mt-1">
+            <div *ngIf="nombreControl.errors.required">Campo requerido</div>
+            <div *ngIf="nombreControl.errors.minlength">Este campo debe poseer al menos 3 caracteres</div>
+          </div> -->
+        </div>
+
+        <div formGroupName="contacto">
+          <div class="form-group">
+            <label for="email">email</label>
+            <input 
+              type="email" 
+              id="email-rf"
+              class="form-control"
+              placeholder="ingrese email"
+              formControlName="email"
+            >
+            <div></div>
+            <!-- <div *ngIf="nombreControl.invalid && nombreControl.dirty" class="alert alert-danger mt-1">
+              <div *ngIf="nombreControl.errors.required">Campo requerido</div>
+              <div *ngIf="nombreControl.errors.minlength">Este campo debe poseer al menos 3 caracteres</div>
+            </div> -->
+          </div>
+  
+          <div class="form-group">
+            <label for="telefono">telefono</label>
+            <input 
+              type="tel" 
+              id="telefono-rf"
+              class="form-control"
+              placeholder="ingrese telefono"
+              formControlName="telefono"
+            >
+            <div></div>
+            <!-- <div *ngIf="nombreControl.invalid && nombreControl.dirty" class="alert alert-danger mt-1">
+              <div *ngIf="nombreControl.errors.required">Campo requerido</div>
+              <div *ngIf="nombreControl.errors.minlength">Este campo debe poseer al menos 3 caracteres</div>
+            </div> -->
+          </div>
+        </div>
+        
+
+        <div class="form-group">
+          <label for="password">password</label>
+          <input 
+            type="password" 
+            id="password-rf"
+            class="form-control"
+            placeholder="ingrese password"
+            formControlName="password"
+          >
+          <div></div>
+          <!-- <div *ngIf="nombreControl.invalid && nombreControl.dirty" class="alert alert-danger mt-1">
+            <div *ngIf="nombreControl.errors.required">Campo requerido</div>
+            <div *ngIf="nombreControl.errors.minlength">Este campo debe poseer al menos 3 caracteres</div>
+          </div> -->
+        </div>
+
+        <button (click)="enviarRF()" class="btn btn-success my-3" [disabled]="f.invalid">
+          Submit
+        </button>
+      </form>
+
+      <hr>
+      <h5>Datos del reactive form</h5>
+      <pre>
+        <p>{{ f | json }}</p>
+      </pre>
+
     </div>
 </div>

@@ -1,8 +1,12 @@
 .jumbotron{
-    background: blue;
+    background: rgb(34, 34, 163);
     color: white;
 }
 
 hr {
     background-color: #eee;
+}
+
+pre {
+    color: #eee;
 }
