@@ -22,6 +22,8 @@ export class EstructuraComponent implements OnInit {
     { nombre: 'Luis', apellido: 'Blanco' , edad: 20, curso: false, foto: 'https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/8_avatar-512.png' },
   ];
 
+  color:string;
+
   constructor() { }
 
   ngOnInit(): void {

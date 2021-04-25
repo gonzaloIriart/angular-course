@@ -91,6 +91,20 @@
           </div>
         </div>
       </div>
+
+      <hr>
+      <h4><u>[Directivas Custom]</u></h4>
+      <br>
       
+      <p [appResaltar]="color" [colorBase]="'orangered'">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias voluptatum consequatur cum quod cumque accusamus ullam culpa! Accusantium minima consequatur, porro ipsum voluptatibus saepe? Error veniam a recusandae. Fugiat, voluptatum.</p>
+
+      <div>
+        <input type="radio" name="colors" (click)="color = 'yellow'">
+        <input type="radio" name="colors" (click)="color = 'purple'">
+        <input type="radio" name="colors" (click)="color = 'blue'">
+        <input type="radio" name="colors" (click)="color = 'tomato'">
+        <input type="radio" name="colors" (click)="color = ''" checked>
+      </div>
+
     </div>
 </div>
